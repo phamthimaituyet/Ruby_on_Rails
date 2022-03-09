@@ -1,0 +1,40 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.container{
+    max-width: 80%;
+    .well {
+        background-color: white;
+        h3{
+            a{
+                color :#0078D7;
+            }
+           
+        }
+    
+        .image {
+            width: 65%;
+            margin: auto;
+    
+            img{
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+
+    h3{
+        color :#0078D7;
+    }
+
+    .image {
+        width: 65%;
+        margin: auto;
+
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+}
