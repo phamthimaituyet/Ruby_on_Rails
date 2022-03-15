@@ -1,0 +1,24 @@
+.container_user{
+    width: 40%;
+    float: left;
+
+    .avatar{
+        width: 250px;
+        height: 250px;
+    
+        img{
+            border-radius: 50%;
+            width: 100%;
+            height: auto;
+        }
+    }
+    
+    h3{
+        margin: 5px;
+    }
+}
+
+.container_post{
+    width: 60%;
+    float: right;
+}

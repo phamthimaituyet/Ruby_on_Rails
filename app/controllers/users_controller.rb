@@ -1,7 +1,8 @@
 
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @user = current_user
+    @posts = Post.where(user_id: current_user.id)
   end
 
   def show
@@ -29,11 +30,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    if @user.update_attributes(params[user_params])
-      sign_in(@user, :bypass => true) if @user == current_user
-      redirect_to @user, :flash => { :success => 'User was successfully updated.' }
+    if @user.update(user_params)
+      redirect_to edit_user_path, :flash => { :success => 'User was successfully updated.' }
     else
-      render :action => 'edit'
+      render :edit
     end
   end
 
@@ -45,6 +45,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar)
     end
 end

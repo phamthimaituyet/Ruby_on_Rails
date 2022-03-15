@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
 <div class = "container">
+
+  <div class = "post-author">
+          <div class = "avatar">
+            <% if @post.user.avatar.attached? %>
+              <%= image_tag @post.user.avatar %>
+            <% else %>
+              <img data-v-5e990434="" src="https://viblo.asia/images/mm.png" srcset="https://viblo.asia/images/mm.png 1x" alt="Avatar" >
+            <% end %>
+          </div>
+          <%= link_to @post.user.email, users_path %>
+  </div>
+
   <h3>
     <%= @post.title %>
   </h3>
