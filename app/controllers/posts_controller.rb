@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
-    
   end
 
   # GET /posts/1 or /posts/1.json
@@ -15,6 +14,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @group_id = params[:group_id]         # lay group_id 
   end
 
   # GET /posts/1/edit
@@ -25,10 +25,19 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @post.group_id = params['group_id']
+
     respond_to do |format|
       if @post.save
-        format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @post }
+        @group_id = params[:group_id]
+        if !@group_id.nil?                             # neu ton tai group_id -> tao post trong group 
+          @group = Group.find(@group_id)
+          format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
+          format.json { render :show, status: :created, location: @post }
+        else                                                 # tao post trong post 
+          format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
+          format.json { render :show, status: :created, location: @post }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }

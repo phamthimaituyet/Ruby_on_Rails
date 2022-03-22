@@ -21,3 +21,8 @@
 @import "posts";
 @import "user";
 
+#error_explanation{
+    h2{
+        color: red;
+    }
+}

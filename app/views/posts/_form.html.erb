@@ -25,10 +25,9 @@
       <%= form.file_field :image %><br>
     </div>
 
-    <div>
-      <%= form.label :status %><br>
-      <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-    </div>
+    <% if @group_id %>                                          
+      <input type="hidden" name="group_id" value="<%= @group_id%>"/>
+    <% end %>
     <br>
       <div class="actions">
       <%= form.submit %>

@@ -1,10 +1,7 @@
 require "test_helper"
 
-class UserTest < ActiveSupport::TestCase
+class GroupTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-
-
-    
 end

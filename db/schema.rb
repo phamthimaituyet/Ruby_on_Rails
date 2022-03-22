@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_101109) do
+ActiveRecord::Schema.define(version: 2022_03_15_095235) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,8 +46,15 @@ ActiveRecord::Schema.define(version: 2022_03_14_101109) do
     t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
     t.index ["post_id"], name: "index_comments_on_post_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -64,9 +71,10 @@ ActiveRecord::Schema.define(version: 2022_03_14_101109) do
     t.integer "user_id"
     t.string "title"
     t.text "content"
+    t.integer "group_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
+    t.index ["group_id"], name: "index_posts_on_group_id"
   end
 
   create_table "users", force: :cascade do |t|

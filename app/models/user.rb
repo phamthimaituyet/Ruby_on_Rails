@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :posts
   has_one_attached :avatar
   has_many :likes ,foreign_key: 'user_id'
+  has_many :groups
 end

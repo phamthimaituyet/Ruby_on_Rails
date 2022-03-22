@@ -45,4 +45,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to posts_url
   end
+
+  test "kiem tra view" do
+    assert_select "title", "Welcome to Rails Testing"
+  end 
+  
 end

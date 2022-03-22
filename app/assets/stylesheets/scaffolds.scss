@@ -38,12 +38,11 @@ div.actions {
 
 .field_with_errors {
   padding: 2px;
-  // background-color: red;
-}
+  background-color: red;
+  display: table; }
 
 #error_explanation {
-  margin: auto;
-  width: 300px;
+  width: 450px;
   border: 2px solid red;
   padding: 7px 7px 0;
   margin-bottom: 20px;
