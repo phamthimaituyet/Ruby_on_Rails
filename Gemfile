@@ -59,3 +59,18 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # bootstrap 
 gem 'bootstrap-sass'
 
+group :development, :test do
+  gem "byebug", platform: :mri
+  gem "rspec-rails"
+  gem 'capybara', '>= 3.26'
+  gem 'faker'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1'
+  gem 'database_cleaner'
+end
+
+gem 'rails-controller-testing'
+
+gem 'rails_admin'

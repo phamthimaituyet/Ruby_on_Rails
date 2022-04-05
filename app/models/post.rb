@@ -4,6 +4,6 @@ class Post < ApplicationRecord
     belongs_to :user
     has_many :likes
     belongs_to :group,  optional: true
-    validates :title, presence: true            # khong dc de trong 
+    validates :title, presence: true           
     validates :content, presence: true
 end

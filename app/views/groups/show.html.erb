@@ -11,6 +11,7 @@
       <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
 <% end %>
 
+
 <% @posts.each do |post| %>
    <p id="notice"><%= flash[:danger] %></p>
  <div class = "container">
