@@ -53,4 +53,22 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'User' do
+    list do 
+      field :name do
+        formatted_value do # used in form views
+          value.to_s.upcase
+        end
+      end
+      field :email
+      field :created_at
+      field :role
+      field :birth
+      # field :groups 
+      field :count_post do
+        label "Posts"
+      end
+      field :status 
+    end
+  end
 end

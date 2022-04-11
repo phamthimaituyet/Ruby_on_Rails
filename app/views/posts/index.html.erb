@@ -4,7 +4,9 @@
   <div style="overflow: auto">
     <h1 style="float:left;margin:3px 5px; color: #FF8728">List Posts</h1>
     <% if user_signed_in? %>
-      <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', new_post_path %></button>
+      <% if current_user.status %>
+        <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', new_post_path %></button>
+      <% end %>
     <% end %>
   </div>
 

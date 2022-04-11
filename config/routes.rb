@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/home'
 
-  devise_for :users
+  devise_for :users, controllers: {
+      sessions: 'users/sessions'
+    }
+
 
   resources :users
 

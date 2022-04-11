@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
-
   # GET /posts or /posts.json
   def index
     @posts = Post.all
@@ -27,9 +26,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.group_id = params[:group_id]
+    current_user.count_post = current_user.posts.count + 1
 
     respond_to do |format|
       if @post.save
+        current_user.save
         @group_id = params[:group_id]
         if !@group_id.nil?                             # neu ton tai group_id -> tao post trong group 
           @group = Group.find(@group_id)
@@ -62,6 +63,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
+
+    current_user.count_post = current_user.posts.count
+
+    current_user.save
 
     respond_to do |format|
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
