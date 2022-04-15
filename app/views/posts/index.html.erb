@@ -27,7 +27,7 @@
                   <% if post.user.avatar.attached? %>
                     <%= image_tag post.user.avatar %>
                   <% else %>
-                    <img data-v-5e990434="" src="https://viblo.asia/images/mm.png" srcset="https://viblo.asia/images/mm.png 1x" alt="Avatar" >
+                     <%= image_tag 'user.png' %>
                   <% end %>
                 </div>
                 <%= link_to post.user.email, users_path %>

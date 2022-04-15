@@ -69,6 +69,7 @@ RailsAdmin.config do |config|
         label "Posts"
       end
       field :status 
+      field :avatar
     end
   end
 

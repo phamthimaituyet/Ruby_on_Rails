@@ -37,23 +37,23 @@ class PostsController < ApplicationController
           @group = Group.find(@group_id)
           if !@post.approve
             format.html { redirect_to group_url(@group), notice: "Cho admin phe duyet" }
-            format.json { render :index, status: :created, location: @post }
+            # format.json { render :index, status: :created, location: @post }
           else
             format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
-            format.json { render :index, status: :created, location: @post }
+            # format.json { render :index, status: :created, location: @post }
           end
         else
           if !@post.approve
-            format.html { redirect_to post_url(@post), notice: "Cho admin phe duyet" }
-            format.json { render :index, status: :created, location: @post }
+            format.html { redirect_to posts_path, notice: "Cho admin phe duyet" }
+            # format.json { render :index, status: :created, location: @post }
           else
             format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-            format.json { render :index, status: :created, location: @post }
+            # format.json { render :index, status: :created, location: @post }
           end                                           
         end
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        # format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
