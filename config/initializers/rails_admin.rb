@@ -71,4 +71,7 @@ RailsAdmin.config do |config|
       field :status 
     end
   end
+
+  config.default_items_per_page = 5
+  
 end
