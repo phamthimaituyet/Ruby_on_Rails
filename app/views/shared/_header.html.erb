@@ -18,11 +18,12 @@
 
         <div class = "thongtincanhan">
           <% if user_signed_in? %>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "Đăng xuất", destroy_user_session_path, method: :delete %></button>
+              <div class = "inf"><%= link_to current_user.email, users_path %></div>
+              <div class = "out_in_sign"><%= link_to "Log out", destroy_user_session_path, method: :delete %></div>
             <% else %>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "Đăng nhập", new_user_session_path %></button>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to "Đăng ký", new_user_registration_path %></button>
-            <% end %>
+              <div class = "out_in_sign"><%= link_to "Log in", new_user_session_path %></div>
+              <div class = "out_in_sign"><%= link_to "Sign up", new_user_registration_path %></div>
+          <% end %>
         </div>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

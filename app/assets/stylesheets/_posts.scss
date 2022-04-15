@@ -2,51 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.container{
-    max-width: 80%;
-    .well {
-        background-color: white;
-        h3{
-            a{
-                color :#0078D7;
+.main{
+    display: flex;
+    flex-direction: row;
+
+    .left{
+        width: 30%;
+    }
+    .between{
+        width: 40%;
+        .well {
+            background-color: white;
+            h3{
+                a{
+                    color :#0078D7;
+                }
+               
             }
-           
-        }
-    
-        .image {
-            width: 65%;
-            margin: auto;
-    
-            img{
+        
+            .image {
                 width: 100%;
-                height: auto;
-            }
-        }
-
-        .post-author {
-            display: flex;
-            align-items: center;
-
-            .avatar{
-                width: 50px;
-                height: 50px;
-                margin: 10px;
-            
+                margin: auto;
+        
                 img{
-                    border-radius: 50%;
                     width: 100%;
                     height: auto;
                 }
             }
-
-            a {
-                display: flex!important;
-                color: #5488c7;
-                text-decoration: none;
-                background-color: initial;
-            }
+    
+           
         }
     }
+    .right{
+        width: 30%;
+    }
+    
+    
 
     h3{
         color :#0078D7;
@@ -99,5 +90,28 @@
             text-decoration: none;
             background-color: initial;
         }
+    }
+}
+.post-author {
+    display: flex;
+    align-items: center;
+
+    .avatar{
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+    
+        img{
+            border-radius: 50%;
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    a {
+        display: flex!important;
+        color: #5488c7;
+        text-decoration: none;
+        background-color: initial;
     }
 }

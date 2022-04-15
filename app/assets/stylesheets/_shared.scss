@@ -8,10 +8,28 @@
 
     .thongtincanhan{
         float: right;
+        display: flex;
+        margin: 10px;
+        padding: 5px;
+        .inf{
+            padding: 5px;
+        }
+        .out_in_sign{
+            padding: 5px;
+        }
+        a{
+            color: #1B74E4;
+        }
+        a:hover{
+            color: #4A9FE2;
+        }
     }
 
     .navbar-nav{
         li{
+            a{
+                color: #1B74E4;
+            }
             a:hover{
                 color: #4A9FE2;
             }

@@ -58,8 +58,8 @@ RailsAdmin.config do |config|
       field :name do
         formatted_value do # used in form views
           value.to_s.upcase
+          end
         end
-      end
       field :email
       field :created_at
       field :role

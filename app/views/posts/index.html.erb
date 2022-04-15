@@ -1,8 +1,7 @@
-  <%= render "static_pages/header" %>
+ <%= render "shared/header" %>
 
   <p id="notice"><%= notice %></p>
   <div style="overflow: auto">
-    <h1 style="float:left;margin:3px 5px; color: #FF8728">List Posts</h1>
     <% if user_signed_in? %>
       <% if current_user.status %>
         <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', new_post_path %></button>
@@ -14,11 +13,15 @@
     <% if !post.group_id.nil? %>
       <% if post.group.status == "private" %>
           <% next %>
-       <% end %>
+      <% end %>
     <% end %>
+    <% if post.approve %>
       <p id="notice"><%= flash[:danger] %></p>
-      <div class = "container">
-        <div class="well">
+      <div class = "main">
+        <div class = "left">
+        </div>
+        <div class = "between">
+          <div class="well">
               <div class = "post-author">
                 <div class = "avatar">
                   <% if post.user.avatar.attached? %>
@@ -75,24 +78,18 @@
                           <% end %> 
                   <% end %>
                 </div>
-                <div class = "button">
-                  <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Show', post %></button>
-                  <% if user_signed_in? %>
-                    <% if post.user_id == current_user.id %>
-                      <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_post_path(post) %></button>
-                      <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-                    <% end %>
-                  <% end %>
-                </div>
               </div>
+          </div>
+        </div>
+        <div class = "right">
         </div>
       </div>
+    <% end %>
 <% end %>
 
 
 
 
-
-
 <br>
+
 

@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+  
   end
 
   # GET /posts/1 or /posts/1.json
@@ -34,11 +35,21 @@ class PostsController < ApplicationController
         @group_id = params[:group_id]
         if !@group_id.nil?                             # neu ton tai group_id -> tao post trong group 
           @group = Group.find(@group_id)
-          format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
-          format.json { render :show, status: :created, location: @post }
-        else                                                 # tao post trong post 
-          format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-          format.json { render :show, status: :created, location: @post }
+          if !@post.approve
+            format.html { redirect_to group_url(@group), notice: "Cho admin phe duyet" }
+            format.json { render :index, status: :created, location: @post }
+          else
+            format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
+            format.json { render :index, status: :created, location: @post }
+          end
+        else
+          if !@post.approve
+            format.html { redirect_to post_url(@post), notice: "Cho admin phe duyet" }
+            format.json { render :index, status: :created, location: @post }
+          else
+            format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
+            format.json { render :index, status: :created, location: @post }
+          end                                           
         end
       else
         format.html { render :new, status: :unprocessable_entity }
