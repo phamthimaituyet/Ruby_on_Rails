@@ -35,25 +35,13 @@ class PostsController < ApplicationController
         @group_id = params[:group_id]
         if !@group_id.nil?                             # neu ton tai group_id -> tao post trong group 
           @group = Group.find(@group_id)
-          if !@post.approve
-            format.html { redirect_to group_url(@group), notice: "Cho admin phe duyet" }
-            # format.json { render :index, status: :created, location: @post }
-          else
-            format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
-            # format.json { render :index, status: :created, location: @post }
-          end
+          format.html { redirect_to group_url(@group), notice: "Cho admin phe duyet" }
         else
-          if !@post.approve
-            format.html { redirect_to posts_path, notice: "Cho admin phe duyet" }
-            # format.json { render :index, status: :created, location: @post }
-          else
-            format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-            # format.json { render :index, status: :created, location: @post }
-          end                                           
+          format.html { redirect_to posts_path, notice: "Cho admin phe duyet" }                                           
         end
       else
         format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
