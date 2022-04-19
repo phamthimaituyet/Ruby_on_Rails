@@ -5,7 +5,9 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
-  
+    if !@posts.approve
+    AdminMailer.welcome_email(@post).deliver
+    end
   end
 
   # GET /posts/1 or /posts/1.json
@@ -33,7 +35,7 @@ class PostsController < ApplicationController
       if @post.save
         current_user.save
         @group_id = params[:group_id]
-        if !@group_id.nil?                             # neu ton tai group_id -> tao post trong group 
+        if @group_id.present?                             
           @group = Group.find(@group_id)
           format.html { redirect_to group_url(@group), notice: "Cho admin phe duyet" }
         else
@@ -83,6 +85,6 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     private
     def post_params
-      params.require(:post).permit(:title, :content, :image)
+      params.require(:post).permit(:title, :content, :image, :approve)
     end
 end

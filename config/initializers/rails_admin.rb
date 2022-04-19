@@ -74,5 +74,5 @@ RailsAdmin.config do |config|
   end
 
   config.default_items_per_page = 5
-  
+
 end
