@@ -77,4 +77,4 @@ gem 'rails_admin'
 
 gem "dotenv-rails"
 
-gem 'mailcatcher'
+# gem 'mailcatcher'

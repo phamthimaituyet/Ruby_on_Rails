@@ -73,6 +73,12 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Post' do
+    edit do
+      field :admin_update
+      field :approve
+    end
+  end
   config.default_items_per_page = 5
 
 end

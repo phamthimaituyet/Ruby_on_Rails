@@ -4,7 +4,16 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+
+    @posts  = params[:term]
+    if params[:term]
+      Post.where('title LIKE ?', "%#{params[:term]}%")    #regular expression
+    else
+      Post.all
+    end
+
+    @posts = Post.search(params[:term])
+    
 
   end
 
@@ -27,7 +36,6 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.group_id = params[:group_id]
-    @post.approve = true
     current_user.count_post = current_user.posts.count + 1
 
     respond_to do |format|
@@ -36,9 +44,9 @@ class PostsController < ApplicationController
         @group_id = params[:group_id]
         if @group_id.present?                             
           @group = Group.find(@group_id)
-          if !post.approve
-            AdminMailer.welcome_email(post.user).deliver
-           end
+          # if !post.approve
+          #   AdminMailer.welcome_email(post.user).deliver
+          #  end
           format.html { redirect_to group_url(@group), notice: "Cho admin phe duyet" }
         else
           format.html { redirect_to posts_path, notice: "Cho admin phe duyet" }                                           
