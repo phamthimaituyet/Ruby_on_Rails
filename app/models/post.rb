@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-    after_save :check
+    after_save :check, if: :approve_change?
     attr_accessor :admin_update
     has_many :comments
     has_one_attached :image
@@ -20,6 +20,10 @@ class Post < ApplicationRecord
     end
       
     private
+
+    def approve_change?
+        saved_changes.has_key?(:approve)
+    end
 
     def check 
         if admin_update && !approve
