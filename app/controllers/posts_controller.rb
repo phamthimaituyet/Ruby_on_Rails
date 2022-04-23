@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @likes = []
+    
     @posts  = params[:term]
     if params[:term]
       Post.where('title LIKE ?', "%#{params[:term]}%")    #regular expression
