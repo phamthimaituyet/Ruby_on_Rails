@@ -1,4 +1,3 @@
-
 class UsersController < ApplicationController
   before_action :authenticate_user!
   
@@ -48,6 +47,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar, :birth, :count_post, :status)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar, :birthday, :count_post, :status)
     end
 end
