@@ -74,3 +74,7 @@ end
 gem 'rails-controller-testing'
 
 gem 'rails_admin'
+
+gem "dotenv-rails"
+
+# gem 'mailcatcher'
