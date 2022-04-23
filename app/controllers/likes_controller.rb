@@ -1,7 +1,9 @@
 class LikesController < ApplicationController
 
     def create
+       
         @like = current_user.likes.new(like_params)
+        
         if @like.save
             flash[:success] = 'Liked!'
             redirect_to posts_url

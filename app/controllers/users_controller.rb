@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[user_params])
+    @user.count_post = 0
 
     if @user.save
       redirect_to @user, :flash => { :success => 'User was successfully created.' }
@@ -47,6 +48,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar, :birth, :count_post, :status)
     end
 end

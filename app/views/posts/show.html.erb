@@ -1,15 +1,16 @@
+<%= render "shared/header" %>
+
 <p id="notice"><%= notice %></p>
 <div class = "container">
-
   <div class = "post-author">
-          <div class = "avatar">
-            <% if @post.user.avatar.attached? %>
-              <%= image_tag @post.user.avatar %>
-            <% else %>
-              <img data-v-5e990434="" src="https://viblo.asia/images/mm.png" srcset="https://viblo.asia/images/mm.png 1x" alt="Avatar" >
-            <% end %>
-          </div>
-          <%= link_to @post.user.email, users_path %>
+    <div class = "avatar">
+      <% if @post.user.avatar.attached? %>
+        <%= image_tag @post.user.avatar %>
+      <% else %> 
+        <%= image_tag 'user.png' %>
+      <% end %>
+    </div>
+    <%= link_to @post.user.email, users_path %>
   </div>
 
   <h3>
@@ -25,13 +26,16 @@
       <%= image_tag @post.image %>
     <% end %>
   </div>
+  <br>
+  <br>
   <% if user_signed_in? %>
     <% if @post.user_id == current_user.id %>
-        <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_post_path(@post) %></button>
+      <%= link_to 'Edit', edit_post_path(@post) %>
+      <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
   <% end %>
 
-  <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Back', posts_path %></button>
+  <%= link_to 'Back', posts_path %>
  
   
 
@@ -46,17 +50,16 @@
     <div class="form-group">
         <%= form.label :commenter %><br>
         <%= form.text_field :commenter, class: "form-control" %>
-      </div>
-      <div class="form-group">
-        <%= form.label :content %>
-        <%= form.text_area :content, class: "form-control", rows: "10" %>
-      </div>
-      <br>
-      <div class="actions">
-        <%= form.submit %>
-      </div>
+    </div>
+    <div class="form-group">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: "form-control", rows: "10" %>
+    </div>
+    <br>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
   <% end %>
-
 
 </div>
 

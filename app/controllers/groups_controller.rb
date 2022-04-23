@@ -5,12 +5,19 @@ class GroupsController < ApplicationController
   # GET /groups or /groups.json
   def index
     @groups = Group.all
+    
   end
 
   # GET /groups/1 or /groups/1.json
   def show
-    @group = Group.find(params[:id])
-    @posts = Post.where(group_id:@group.id)
+    
+    if @group.ban
+      @posts = Post.where(group_id:@group.id)
+    else
+      respond_to do |format|
+        format.html { redirect_to groups_path, notice: "Group đã bị ban" }
+      end
+    end
   end
 
   # GET /groups/new
@@ -68,6 +75,6 @@ class GroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def group_params
-      params.require(:group).permit(:name)
+      params.require(:group).permit(:name, :status, :ban)
     end
 end

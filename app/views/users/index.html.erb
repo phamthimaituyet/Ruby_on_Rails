@@ -1,43 +1,42 @@
-  <%= render "static_pages/header" %>
-  
-  
-  <p id="notice"><%= notice %></p>
- 
-<div class="container">
-  <% if user_signed_in? %>
-    <div class = "container_user">
-           <div class = "avatar">
-             <% if @user.avatar.attached? %>
-              <%= image_tag @user.avatar %>
-            <% end %>
-          </div>
-          <h3><%= @user.email %></h3>
-          <h3><%= @user.name %></h3>
-          <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_user_path(@user) %></button>
-          <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-  </div>
-  <% end %>
+<%= render "shared/header" %>
 
- <% @posts.each do |post| %>
- <div class = "container_post">
-  <div class="well">
+<p id="notice"><%= notice %></p>
+ 
+<div class="inf_personal">
+  <% if user_signed_in? %>
+    <div class = "user">
+      <div class = "avatar">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar %>
+        <% else %>
+          <%= image_tag 'user.png' %>
+        <% end %>
+      </div>
+      <h3><%= @user.email %></h3>
+      <h3><%= @user.name %></h3>
+      <h3><%= @user.birth %></h3>
+      <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_user_path(@user) %></button>
+      <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    </div>
+  <% end %>
+  <div class = "user_post">
+    <% @posts.each do |post| %>
+      <div class="well">
         <h3><%= link_to post.title, post %></h3>
         <p><%= post.content %></p>
         <div class = "image">
           <% if post.image.attached? %>
-             <%= image_tag post.image %>
+            <%= image_tag post.image %>
           <% end %>
-
         </div>
-          <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Show', post %></button>
-          <% if user_signed_in? %>
-            <% if post.user_id == current_user.id %>
-              <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_post_path(post) %></button>
-              <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-            <% end %>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Show', post %></button>
+        <% if user_signed_in? %>
+          <% if post.user_id == current_user.id %>
+            <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_post_path(post) %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
           <% end %>
-
+        <% end %>
+      </div>
+    <% end %>
   </div>
-</div>
- <% end %>
 </div>

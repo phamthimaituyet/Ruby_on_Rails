@@ -42,7 +42,7 @@ a {
 }
 
 a:hover {
-	color: #948A86;
+	color: #aeaeae;
 }
 
 
@@ -56,9 +56,9 @@ a:hover {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
 }
 
-.login-box {
+.register-box {
 	background-color: white;
-	max-width: 390px;
+	max-width: 500px;
 	margin: 0 auto;
 	position: relative;
 	top: 80px;
@@ -66,15 +66,26 @@ a:hover {
 	border-radius: 5px;
 	box-shadow: 0 5px 50px rgba(0,0,0,0.4);
 	text-align: center;
+
+
+    .flex{
+        display: flex;
+        flex-direction: row;
+        margin-left: 3.5%;
+        margin-right: 3.5%;
+        .field{
+            width: 50%;
+        }
+    }
 }
 
-.login-box .box-header {
+.register-box .box-header {
 	background-color: #665851;
 	margin-top: 0;
 	border-radius: 5px 5px 0 0;
 }
 
-.login-box label {
+.register-box label {
 	font-weight: 700;
 	font-size: .8em;
 	color: #888;
@@ -82,18 +93,14 @@ a:hover {
 	text-transform: uppercase;
 	line-height: 2em;
 }
-.checkbox{
-	margin: 10px;
-	padding: 5px;
-}
 
-.login-box input {
+.register-box input {
 	margin-bottom: 20px;
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 2px;
 	font-size: .9em;
-    width: 70%;
+    width: 90%;
 	color: #888;
 }
 input.checkbox {
@@ -104,14 +111,14 @@ input.checkbox {
     width: 63%;
 }
 
-.login-box input:focus {
+.register-box input:focus {
 	outline: none;
 	border-color: #665851;
 	transition: 0.5s;
 	color: #665851;
 }
 
-.login-box .actions {
+.register-box .actions {
 	margin-top: 0px;
 	border: 0;
 	border-radius: 2px;
@@ -126,12 +133,12 @@ input.checkbox {
 	outline: none;
 }
 
-.login-box .actions:hover {
+.register-box .actions:hover {
 	opacity: 0.7;
 	transition: 0.5s;
 }
 
-.login-box .actions:hover {
+.register-box .actions:hover {
 	opacity: 0.7;
 	transition: 0.5s;
 }

@@ -1,5 +1,5 @@
+<%= render "shared/header" %>
 
-<%= render "static_pages/header" %>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -8,84 +8,10 @@
 </p>
 
 <% if user_signed_in? %>
-      <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
+  <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
 <% end %>
 
-<% @posts.each do |post| %>
-   <p id="notice"><%= flash[:danger] %></p>
- <div class = "container">
-  <div class="well">
-        <div class = "post-author">
-          <div class = "avatar">
-            <% if post.user.avatar.attached? %>
-              <%= image_tag post.user.avatar %>
-            <% else %>
-              <img data-v-5e990434="" src="https://viblo.asia/images/mm.png" srcset="https://viblo.asia/images/mm.png 1x" alt="Avatar" >
-            <% end %>
-          </div>
-          <%= link_to post.user.email, users_path %>
-        </div>
-        <h3><%= link_to post.title, post %></h3>
-        <p><%= post.content %></p>
-        <div class = "image">
-          <% if post.image.attached? %>
-             <%= image_tag post.image %>
-          <% end %>
-        </div>
-        <div class = "bottom">
-          <div class="like-post">
-            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                  width="1.1em" height="1em" viewBox="0 0 1200.000000 1419.000000"
-                  preserveAspectRatio="xMidYMid meet">
-
-                  <g transform="translate(0.000000,1419.000000) scale(0.100000,-0.100000)"
-                    fill="red" stroke="none">
-                    <path d="M2970 13410 c-560 -54 -1010 -269 -1419 -680 -398 -399 -634 -882
-                    -717 -1465 -22 -150 -24 -493 -5 -650 83 -696 363 -1310 1078 -2369 222 -329
-                    497 -711 983 -1366 1371 -1849 1954 -2697 2378 -3456 266 -478 426 -841 616
-                    -1401 52 -153 107 -305 121 -337 22 -50 28 -57 39 -45 17 18 60 131 143 374
-                    257 754 671 1536 1354 2562 430 645 779 1126 1463 2013 969 1257 1288 1717
-                    1595 2300 315 596 490 1105 568 1655 26 187 26 678 -1 850 -64 416 -216 786
-                    -452 1102 -82 108 -269 300 -389 396 -359 290 -696 426 -1245 503 -159 23
-                    -660 26 -785 6 -440 -72 -879 -311 -1269 -691 -347 -339 -585 -700 -776 -1176
-                    -88 -221 -166 -384 -186 -392 -41 -15 -138 136 -314 492 -77 154 -176 341
-                    -220 415 -458 762 -1093 1215 -1880 1341 -144 23 -523 34 -680 19z"/>
-                  </g>
-            </svg>
-            <%= post.likes.count %> <%= (post.likes.count) == 1 ||  (post.likes.count) == 0 ? 'Like' : 'Likes'%>
-            <% if user_signed_in? %>
-              <% like = current_user.likes.find_by(post: post) %>
-                    <% if !like.nil? %>
-                    <form action="<%= like_path(like)%>" method="post">
-                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                        <input type="hidden" name="_method" value="DELETE"/>
-                        <input name="like[post_id]" type="hidden" value="<%= post.id %>"/>
-                        <button type="submit">UnLike</button>
-                      </form>
-                    <% else %>
-                      <form action="/likes" method="post">
-                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                        <input name="like[post_id]" type="hidden" value="<%= post.id %>"/>
-                        <button type="submit">Like</button>
-                      </form>
-                    <% end %> 
-            <% end %>
-          </div>
-          <div class = "button">
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Show', post %></button>
-            <% if user_signed_in? %>
-              <% if post.user_id == current_user.id %>
-                <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_post_path(post) %></button>
-                <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-
-  </div>
-</div>
-<% end %>
-
+<%= render "shared/listPost" %>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

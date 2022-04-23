@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
-  
-  root 'static_pages#home'
-  get 'static_pages/home'
-  # get 'pots/index'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  root 'posts#index'
+  get 'posts/index'
+
   devise_for :users
+
+
   resources :users
+
   resources :posts do 
     resources :comments
   end
