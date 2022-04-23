@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_20_102155) do
+ActiveRecord::Schema.define(version: 2022_04_23_140240) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -89,10 +89,9 @@ ActiveRecord::Schema.define(version: 2022_04_20_102155) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "role"
-    t.string "birth"
     t.integer "count_post"
     t.boolean "status", default: true
-    t.index ["birth"], name: "index_users_on_birth"
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

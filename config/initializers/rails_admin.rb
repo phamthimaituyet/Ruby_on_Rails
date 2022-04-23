@@ -63,7 +63,7 @@ RailsAdmin.config do |config|
       field :email
       field :created_at
       field :role
-      field :birth
+      field :birthday 
       # field :groups 
       field :count_post do
         label "Posts"
