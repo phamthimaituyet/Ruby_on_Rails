@@ -16,11 +16,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "static_pages";
+@import "shared";
 @import "login";
 @import "posts";
 @import "user";
 @import "register";
+@import "scaffolds";
+@import "groups";
 
 #error_explanation{
     h2{

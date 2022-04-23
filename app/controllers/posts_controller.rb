@@ -1,10 +1,20 @@
 class PostsController < ApplicationController
+  include LikesHelper
+
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    
+    @posts  = params[:term]
+    if params[:term]
+      Post.where('title LIKE ?', "%#{params[:term]}%")    #regular expression
+    else
+      Post.all
+    end
+
+    @posts = Post.search(params[:term])
   end
 
   # GET /posts/1 or /posts/1.json
@@ -32,13 +42,14 @@ class PostsController < ApplicationController
       if @post.save
         current_user.save
         @group_id = params[:group_id]
-        if !@group_id.nil?                             # neu ton tai group_id -> tao post trong group 
+        if @group_id.present?                             
           @group = Group.find(@group_id)
-          format.html { redirect_to group_url(@group), notice: "Post was successfully created." }
-          format.json { render :show, status: :created, location: @post }
-        else                                                 # tao post trong post 
-          format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
-          format.json { render :show, status: :created, location: @post }
+          # if !post.approve
+          #   AdminMailer.welcome_email(post.user).deliver
+          #  end
+          format.html { redirect_to group_url(@group), notice: "Cho admin phe duyet" }
+        else
+          format.html { redirect_to posts_path, notice: "Cho admin phe duyet" }                                           
         end
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -84,6 +95,6 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     private
     def post_params
-      params.require(:post).permit(:title, :content, :image)
+      params.require(:post).permit(:title, :content, :image, :approve)
     end
 end

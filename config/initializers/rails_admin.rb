@@ -58,8 +58,8 @@ RailsAdmin.config do |config|
       field :name do
         formatted_value do # used in form views
           value.to_s.upcase
+          end
         end
-      end
       field :email
       field :created_at
       field :role
@@ -69,6 +69,18 @@ RailsAdmin.config do |config|
         label "Posts"
       end
       field :status 
+      field :avatar
     end
   end
+
+  config.model 'Post' do
+    edit do
+      field :admin_update
+      field :title
+      field :content
+      field :approve
+    end
+  end
+  config.default_items_per_page = 5
+
 end
