@@ -10,7 +10,14 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    @posts = Post.where(group_id:@group.id)
+    
+    if @group.ban
+      @posts = Post.where(group_id:@group.id)
+    else
+      respond_to do |format|
+        format.html { redirect_to groups_path, notice: "Group đã bị ban" }
+      end
+    end
   end
 
   # GET /groups/new

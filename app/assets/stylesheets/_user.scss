@@ -27,6 +27,13 @@
     .user_post{
         width: 60%;
         float: right;
+        .well{
+            h3{
+                a{
+                    color: #139DF8;
+                }
+            }
+        }
         img{
             width: 100%;
             height: auto;

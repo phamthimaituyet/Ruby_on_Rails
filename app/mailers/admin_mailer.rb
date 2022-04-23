@@ -1,9 +1,8 @@
 class AdminMailer < ApplicationMailer
   default :from => 'phamthimaituyet00@gmail.com'
 
-  def welcome_email(user)
-    # @url  = 'http://example.com/login'
+  def post_email(user)
     @user = user
-    mail :to => user.email, :subject => "We've received your email"
+    mail :to => user.email, :subject => "Tu choi bai post"
   end
 end

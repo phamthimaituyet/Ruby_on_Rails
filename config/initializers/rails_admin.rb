@@ -76,6 +76,8 @@ RailsAdmin.config do |config|
   config.model 'Post' do
     edit do
       field :admin_update
+      field :title
+      field :content
       field :approve
     end
   end

@@ -27,7 +27,7 @@ class Post < ApplicationRecord
 
     def check 
         if admin_update && !approve
-            AdminMailer.welcome_email(user).deliver
+            AdminMailer.post_email(user).deliver
         end
     end
 end

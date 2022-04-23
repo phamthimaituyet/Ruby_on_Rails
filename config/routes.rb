@@ -5,9 +5,7 @@ Rails.application.routes.draw do
   root 'posts#index'
   get 'posts/index'
 
-  devise_for :users, controllers: {
-      sessions: 'users/sessions'
-    }
+  devise_for :users
 
 
   resources :users

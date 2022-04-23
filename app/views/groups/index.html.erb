@@ -1,7 +1,5 @@
 <%= render "shared/header" %>
 
-<p id="notice"><%= notice %></p>
-
 <div style="overflow: auto">
     <h1 style="float:left;margin:3px 5px; color: #FF8728">Groups</h1>
     <% if user_signed_in? %>
@@ -9,31 +7,23 @@
     <% end %>
 </div>
 
-
 <br>
 
 <% @groups.each do |group| %>
 
-<p id="notice"><%= flash[:danger] %></p>
- <div class = "container">
-  <div class="well">
-        
-        <% if group.ban %>
-          <h3><%= link_to group.name, group_path(group)  %></h3>
-        <% else %>
-          <p id="notice"><%= notice %></p>
-        <% end %>
-        <div class = "bottom">
-          <div class = "button">
-            <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_group_path(group) %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></button>
-          </div>
-        </div>
+  <p id="notice"><%= flash[:danger] %></p>
+  <div class = "container">
+    <h3><%= link_to group.name, group_path(group) %></h3>
+    <p id="notice"><%= notice %></p>
+    <div class = "bottom">
+      <div class = "button">
+        <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_group_path(group) %></button>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+      </div>
+    </div>
 
   </div>
-</div>
 
- 
 <% end %>
 
 <br>

@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
+  include LikesHelper
+
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
   # GET /posts or /posts.json
   def index
-
+    @likes = []
     @posts  = params[:term]
     if params[:term]
       Post.where('title LIKE ?', "%#{params[:term]}%")    #regular expression
@@ -13,8 +15,6 @@ class PostsController < ApplicationController
     end
 
     @posts = Post.search(params[:term])
-    
-
   end
 
   # GET /posts/1 or /posts/1.json
