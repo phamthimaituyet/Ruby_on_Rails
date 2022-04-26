@@ -74,6 +74,7 @@ end
 gem 'rails-controller-testing'
 
 gem 'rails_admin'
+gem "wysiwyg-rails"
 
 gem "dotenv-rails"
 

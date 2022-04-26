@@ -75,7 +75,11 @@ RailsAdmin.config do |config|
 
   config.model 'Post' do
     edit do
-      field :admin_update
+      field :admin_update do
+        formatted_value do 
+          true
+        end
+        end
       field :title
       field :content
       field :approve
