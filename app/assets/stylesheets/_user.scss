@@ -42,4 +42,58 @@
     }
 }
 
+.main_posts{
+    position: relative;
 
+    #label1{
+        position: absolute;
+        top: 0;
+        font-size: 20px;
+    }
+
+    #label2{
+        position: absolute;
+        top: 0;
+        left: 100px;
+        font-size: 20px;
+    }
+
+    #label3{
+        position: absolute;
+        top: 0;
+        left: 220px;
+        font-size: 20px;
+    }
+
+    input{
+        display: none;
+
+        &+label{
+            cursor: pointer;
+
+            img{
+                transform: rotate(-90deg);
+            }
+
+            font-style: normal;
+            font-weight: bold;
+            font-size: 1rem;
+            line-height: 26px;
+            color: #333333;
+        }
+
+        &:checked{     
+            &+label{
+                &+.posts{
+                    display: block;
+                }    
+            }    
+        }
+    }
+
+    .posts{
+        position: absolute;
+        display: none;
+        top: 40px;
+    }
+}
