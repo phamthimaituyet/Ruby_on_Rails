@@ -9,12 +9,14 @@ class PostsController < ApplicationController
     
     @posts  = params[:term]
     if params[:term]
-      Post.where('title LIKE ?', "%#{params[:term]}%")    #regular expression
+      Post.where('title LIKE ?', "%#{params[:term]}%")   #regular expression
     else
       Post.all
     end
 
     @posts = Post.search(params[:term])
+
+    @posts = @posts.page(params[:page]).per(2)
   end
 
   # GET /posts/1 or /posts/1.json

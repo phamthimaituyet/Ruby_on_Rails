@@ -81,6 +81,9 @@
             line-height: 26px;
             color: #333333;
         }
+        &+label:hover{
+            color: #0a67a5;
+        }
 
         &:checked{     
             &+label{
@@ -95,5 +98,6 @@
         position: absolute;
         display: none;
         top: 40px;
+        width: 750px;
     }
 }

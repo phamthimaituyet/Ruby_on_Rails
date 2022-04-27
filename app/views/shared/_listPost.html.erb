@@ -60,7 +60,7 @@
                                             <button type="submit">UnLike</button>
                                         </form>
                                     <% else %>
-                                        <form action="/likes" method="post">
+                                        <form action="/likes" method="post" remote="true">
                                             <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                                             <input name="like[post_id]" type="hidden" value="<%= post.id %>"/>
                                             <button type="submit">Like</button>
@@ -76,3 +76,6 @@
         </div>
     <% end %>
 <% end %>
+
+<%= paginate @posts, theme: 'twitter-bootstrap-3' %>
+

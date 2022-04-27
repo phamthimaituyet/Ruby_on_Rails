@@ -5,8 +5,10 @@ class LikesController < ApplicationController
         @like = current_user.likes.new(like_params)
         
         if @like.save
-            flash[:success] = 'Liked!'
-            redirect_to posts_url
+            respond_to do |format|
+                format.html { redirect_to posts_url}
+                format.js { render '/posts/like.js.erb' }
+            end
         else
             flash[:danger] = 'Already liked'
             redirect_to posts_url
@@ -17,7 +19,10 @@ class LikesController < ApplicationController
     def destroy
         @like = current_user.likes.find(params[:id])
         @like.destroy
-        redirect_to posts_url
+        respond_to do |format|
+            format.html { redirect_to posts_url}
+            format.js { render '/posts/like.js.erb' }
+        end
     end
 
     private

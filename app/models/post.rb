@@ -19,6 +19,7 @@ class Post < ApplicationRecord
         end
     end
       
+
     private
 
     def approve_change?
@@ -30,4 +31,6 @@ class Post < ApplicationRecord
             AdminMailer.post_email(user).deliver
         end
     end
+
+    
 end

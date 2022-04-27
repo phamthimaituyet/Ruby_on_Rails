@@ -78,4 +78,8 @@ gem "wysiwyg-rails"
 
 gem "dotenv-rails"
 
+gem 'kaminari'      
+gem 'ransack'     
+gem 'bootstrap-kaminari-views' 
+
 # gem 'mailcatcher'

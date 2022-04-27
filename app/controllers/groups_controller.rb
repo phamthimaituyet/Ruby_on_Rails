@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
     
     if @group.ban
       @posts = Post.where(group_id:@group.id)
+      @posts = @posts.page(params[:page]).per(3)
     else
       respond_to do |format|
         format.html { redirect_to groups_path, notice: "Group đã bị ban" }

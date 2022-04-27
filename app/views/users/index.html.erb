@@ -30,7 +30,7 @@
       <input type="radio" name="list_post" id="list_post2" /><label id="label2" for="list_post2">Pending</label>
       <div class="posts">
         <% @posts.each do |post| %>
-          <%= render :template => "users/show_post", :locals => { :post => post, :check => !post.approve.present?} %>
+          <%= render :template => "users/show_post", :locals => { :post => post, :check => post.approve == nil} %>
         <% end %>
       </div>
       <input type="radio" name="list_post" id="list_post3" /><label id="label3" for="list_post3">Reject</label>
