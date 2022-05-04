@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   
 
   resources :posts do 
-    resources :comments
+    resources :comments 
+  end
+
+  resources :comments do
+    post '/create', to: 'comments#create'
   end
   resources :groups do
     get ':group_id/posts/new', to: 'posts#new'

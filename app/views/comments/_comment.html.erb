@@ -3,16 +3,38 @@
     <strong>Comment:</strong>
     <%= comment.content %> (<i> <%= comment.commenter %> </i>)
   </p>
+
   <div class="card">
     <div class="card-body">
-        <%= link_to 'reply', new_post_comment_path(@post, parent_id: comment.id), remote: true, class: 'd-block' %>
-      </div>
+        <a class="d_block" href="#" >reply</a>
+        <%= render partial: 'comments/reply_form', locals: { comment: comment, post: @post }  %>
     </div>
-    <% if comment.replies.any? %>
-      <% comment.replies.each do |reply| %> 
-        <%= render partial: 'comments/reply', locals: { reply: reply } %>
-      <% end %>
+  </div>
+  <% if comment.replies.any? %>
+    <% comment.replies.each do |reply| %> 
+      <%= render partial: 'comments/reply', locals: { reply: reply } %>
     <% end %>
-    <div id="reply-form-<%= comment.id %>"></div>
+  <% end %>
+  <div id="reply-form-<%= comment.id %>"></div>
+
   
 <% end %>
+
+<script>
+  const d_blocks = document.querySelectorAll("a.d_block")
+  const replies = document.querySelectorAll(".card.ml-5.reply")
+  
+  if(d_blocks.length > 0){
+    d_blocks.forEach((d_block,indexD) => {
+      d_block.onclick = function(e) {
+        e.preventDefault()
+
+        replies.forEach((reply,indexR) => {
+          if(indexD === indexR){
+            reply.classList.toggle('display')
+          }
+        })
+      }
+    });
+  }
+</script>
