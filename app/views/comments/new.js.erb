@@ -1,2 +1,2 @@
-document.querySelector("#reply-form-2").innerHTML = ("<%= j render 'reply_form', comment: @comment, post: @post %>")
+document.querySelector("#reply-form-<%= @comment.parent_id %>").innerHTML = ("<%= j render 'reply_form', comment: @comment, post: @post %>")
 
