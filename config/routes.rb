@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   
 
   resources :posts do 
-    resources :comments 
+    resources :comments do
+      get :reply
+    end 
   end
 
   resources :comments do

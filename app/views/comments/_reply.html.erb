@@ -1,5 +1,5 @@
 <div class="card ml-5">
   <div class="card-body">
-    <%= reply.content %>
+    <%= reply.content %> <% if reply.commenter.present? %>(<i> <%= reply.commenter %> </i>)<% end %>
   </div>
 </div>

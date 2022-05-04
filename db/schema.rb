@@ -91,10 +91,9 @@ ActiveRecord::Schema.define(version: 2022_05_04_021558) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "role"
+    t.string "birth"
     t.integer "count_post"
     t.boolean "status", default: true
-    t.date "birthday"
-    t.string "birth"
     t.index ["birth"], name: "index_users_on_birth"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true

@@ -3,10 +3,12 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 
-.card.ml-5.reply{
-    display: none;
+.d_block{
+        color: #337ab7;
 }
 
-.card.ml-5.reply.display{
-    display: block;
+.card.ml-5{
+    .card-body{
+        margin-left: 5%;
+    }
 }

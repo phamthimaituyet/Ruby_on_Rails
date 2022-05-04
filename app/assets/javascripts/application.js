@@ -10,3 +10,5 @@
 //= require ckeditor-jquery
 //= require turbolinks
 //= require_tree . 
+
+import "@fortawesome/fontawesome-free/js/all";

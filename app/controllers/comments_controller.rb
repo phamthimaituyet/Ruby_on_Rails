@@ -3,15 +3,28 @@ class CommentsController < ApplicationController
   
   def new
     @post = Post.find(params[:post_id])
-    @comment = Comments.new(parent_id: params[:user_id])
+    @comment = Comment.new(parent_id: params[:parent_id])
+    
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
   
   def create
         @post = Post.find(params[:post_id])              # tìm bài viết đang đc comment 
         @comment = @post.comments.create(comment_params)    # tạo comment cho bài viết đó 
         if @comment.save
-          redirect_to post_path(@post)                     # điều hướng bài viết cũ 
-      end
+          redirect_to post_path(@post)   
+        end                
+  end
+
+  def reply
+    @post = Post.find params[:post_id]
+    @comment = Comment.new
+    @parent = params[:id]
+    render :new
+  end
 
       def destroy
         @comment = @post.comments.find(params[:id])
