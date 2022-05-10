@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_04_021558) do
+ActiveRecord::Schema.define(version: 2022_05_10_042116) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -51,9 +51,19 @@ ActiveRecord::Schema.define(version: 2022_05_04_021558) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
+  create_table "group_members", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "status"
+    t.index ["group_id"], name: "index_group_members_on_group_id"
+    t.index ["user_id"], name: "index_group_members_on_user_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.integer "user_id"
+    t.integer "user_create_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "status"
@@ -103,6 +113,8 @@ ActiveRecord::Schema.define(version: 2022_05_04_021558) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
+  add_foreign_key "group_members", "groups"
+  add_foreign_key "group_members", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
 end

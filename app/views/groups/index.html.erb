@@ -17,14 +17,27 @@
     <% if !group.ban  %>
       <p id="notice"><%= notice %></p>
     <% end %>
-    <div class = "bottom">
-      <div class = "button">
-        <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Join group', groups_url %></button>
-      </div>
-    </div>
+    <% if user_signed_in? %>
+      <% if group.user_create_id != current_user.id %>
+        <div class = "bottom">
+          <div class = "button">
+            <button type="button" class="btn btn-default navbar-btn" id="join_group">Tham gia nhóm</button>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
 
   </div>
 
 <% end %>
 
 <br>
+
+<script>
+  var change_button = document.getElementById("join_group");
+
+  change_button.onclick = function addText()
+  {
+    change_button.innerText= "Đã gửi yêu cầu tham gia";
+  }
+</script>

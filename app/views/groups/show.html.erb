@@ -1,11 +1,5 @@
 <%= render "shared/header" %>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
 
 <% if user_signed_in? %>
   <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>

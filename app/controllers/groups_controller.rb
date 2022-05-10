@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    
+
     if @group.ban
       @posts = Post.where(group_id:@group.id)
       @posts = @posts.page(params[:page]).per(3)
@@ -33,7 +33,9 @@ class GroupsController < ApplicationController
   # POST /groups or /groups.json
   def create
     @group = Group.new(group_params)
-    @group.user_id = current_user.id
+    @group[:user_create_id] = current_user.id
+    @group.group_members.new(user_id: current_user.id)
+    byebug
     respond_to do |format|
       if @group.save
         format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
@@ -77,5 +79,13 @@ class GroupsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def group_params
       params.require(:group).permit(:name, :status, :ban)
+    end
+
+    def group_member_params
+      params.permit(:group_id, :user_id)
+    end
+
+    def group_members(user_id, group_id)
+      member = GroupMember.where(user_id: user_id, group_id: group_id)
     end
 end
