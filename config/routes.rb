@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   resources :groups do
     get ':group_id/posts/new', to: 'posts#new'
     resources :posts
+    post "/join_group", to: "groups#join_group"
   end
   resources :likes, only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

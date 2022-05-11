@@ -1,13 +1,12 @@
 <%= render "shared/header" %>
-
-  <p id="notice"><%= notice %></p>
-  <div style="overflow: auto">
+<p id="notice"><%= notice %></p>
+<div style="overflow: auto">
     <% if user_signed_in? %>
-      <% if current_user.status %>
-        <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', new_post_path %></button>
-      <% end %>
+        <% if current_user.status %>
+            <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', new_post_path %></button>
+        <% end %>
     <% end %>
-  </div>
+</div>
 
 <%= render "shared/listPost" %>
 

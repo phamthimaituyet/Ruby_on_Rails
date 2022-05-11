@@ -1,9 +1,7 @@
 class LikesController < ApplicationController
 
     def create
-       
         @like = current_user.likes.new(like_params)
-        
         if @like.save
             respond_to do |format|
                 format.html { redirect_to posts_url}
@@ -13,7 +11,6 @@ class LikesController < ApplicationController
             flash[:danger] = 'Already liked'
             redirect_to posts_url
         end
-
     end
 
     def destroy

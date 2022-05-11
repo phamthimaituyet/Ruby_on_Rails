@@ -3,42 +3,42 @@
 <p id="notice"><%= notice %></p>
  
 <div class="inf_personal">
-  <% if user_signed_in? %>
-    <div class = "user">
-      <div class = "avatar">
-        <% if @user.avatar.attached? %>
-          <%= image_tag @user.avatar %>
-        <% else %>
-          <%= image_tag 'user.png' %>
-        <% end %>
-      </div>
-      <h3><%= @user.email %></h3>
-      <h3><%= @user.name %></h3>
-      <h3><%= @user.birth %></h3>
-      <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_user_path(@user) %></button>
-      <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+    <% if user_signed_in? %>
+        <div class = "user">
+            <div class = "avatar">
+                <% if @user.avatar.attached? %>
+                    <%= image_tag @user.avatar %>
+                <% else %>
+                    <%= image_tag 'user.png' %>
+                <% end %>
+            </div>
+            <h3><%= @user.email %></h3>
+            <h3><%= @user.name %></h3>
+            <h3><%= @user.birth %></h3>
+            <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_user_path(@user) %></button>
+            <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+        </div>
+    <% end %>
+    <div class = "user_post">
+        <div class="main_posts">
+            <input type="radio" name="list_post" checked="checked" id="list_post1" /><label id="label1" for="list_post1">Public</label>
+            <div class="posts">
+                <% @posts.each do |post| %>
+                    <%= render :template => "users/show_post", :locals => { :post => post, :check => post.approve} %>
+                <% end %>
+            </div>
+            <input type="radio" name="list_post" id="list_post2" /><label id="label2" for="list_post2">Pending</label>
+            <div class="posts">
+                <% @posts.each do |post| %>
+                    <%= render :template => "users/show_post", :locals => { :post => post, :check => post.approve == nil} %>
+                <% end %>
+            </div>
+            <input type="radio" name="list_post" id="list_post3" /><label id="label3" for="list_post3">Reject</label>
+            <div class="posts">
+                <% @posts.each do |post| %>
+                    <%= render :template => "users/show_post", :locals => { :post => post, :check => post.approve == false} %>
+                <% end %>
+            </div>
+        </div>
     </div>
-  <% end %>
-  <div class = "user_post">
-    <div class="main_posts">
-      <input type="radio" name="list_post" checked="checked" id="list_post1" /><label id="label1" for="list_post1">Public</label>
-      <div class="posts">
-        <% @posts.each do |post| %>
-          <%= render :template => "users/show_post", :locals => { :post => post, :check => post.approve} %>
-        <% end %>
-      </div>
-      <input type="radio" name="list_post" id="list_post2" /><label id="label2" for="list_post2">Pending</label>
-      <div class="posts">
-        <% @posts.each do |post| %>
-          <%= render :template => "users/show_post", :locals => { :post => post, :check => post.approve == nil} %>
-        <% end %>
-      </div>
-      <input type="radio" name="list_post" id="list_post3" /><label id="label3" for="list_post3">Reject</label>
-      <div class="posts">
-        <% @posts.each do |post| %>
-          <%= render :template => "users/show_post", :locals => { :post => post, :check => post.approve == false} %>
-        <% end %>
-      </div>
-    </div>
-  </div>
 </div>

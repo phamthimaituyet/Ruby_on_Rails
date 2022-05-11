@@ -1,38 +1,37 @@
 <div class = "container">
-  <%= form_with(model: @user) do |form| %>
-    <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <%= form_with(model: @user) do |form| %>
+        <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+            <ul>
+                <% @user.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                <% end %>
+            </ul>
+        </div>
+        <% end %>
+        <p id="notice"><%= flash[:success] %></p>
+        <div class="form-group">
+            <%= form.label :email %>
+            <%= form.text_field :email, class: "form-control" %>
+        </div>
 
-        <ul>
-          <% @user.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
+        <div class="form-group">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "form-control" %>
+        </div>
+
+        <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar %>
+        <% end %>
+
+        <div class="field">
+            <%= form.label :avatar %>
+            <%= form.file_field :avatar %><br>
+        </div>
+        <br>
+        <div class="actions">
+            <%= form.submit %>
+        </div>
     <% end %>
-    <p id="notice"><%= flash[:success] %></p>
-    <div class="form-group">
-      <%= form.label :email %>
-      <%= form.text_field :email, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :name %>
-      <%= form.text_field :name, class: "form-control" %>
-    </div>
-
-    <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar %>
-    <% end %>
-
-    <div class="field">
-      <%= form.label :avatar %>
-      <%= form.file_field :avatar %><br>
-    </div>
-    <br>
-      <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
 </div>

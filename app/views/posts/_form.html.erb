@@ -1,36 +1,35 @@
 <div class = "container">
-  <%= form_with(model: post) do |form| %>
-    <% if post.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <%= form_with(model: post) do |form| %>
+        <% if post.errors.any? %>
+            <div id="error_explanation">
+                <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+                <ul>
+                    <% post.errors.each do |error| %>
+                        <li><%= error.full_message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+        
+        <div class="form-group">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control" %>
+        </div>
+        <div class="form-group">
+            <%= form.label :content %>
+            <%= form.text_area :content, class: "form-control", rows: "10" %>
+        </div>
+        <div class="form-group">
+            <%= form.label :image %>
+            <%= form.file_field :image %><br>
+        </div>
 
-        <ul>
-          <% post.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
+        <% if @group_id %>                                          
+            <input type="hidden" name="group_id" value="<%= @group_id%>"/>
+        <% end %>
+        <br>
+        <div class="actions">
+            <%= form.submit %>
+        </div>
     <% end %>
-    
-    <div class="form-group">
-      <%= form.label :title %>
-      <%= form.text_field :title, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= form.label :content %>
-      <%= form.text_area :content, class: "form-control", rows: "10" %>
-    </div>
-    <div class="form-group">
-      <%= form.label :image %>
-      <%= form.file_field :image %><br>
-    </div>
-
-    <% if @group_id %>                                          
-      <input type="hidden" name="group_id" value="<%= @group_id%>"/>
-    <% end %>
-    <br>
-      <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
 </div>

@@ -1,0 +1,18 @@
+<div class = "container">
+    <h3><%= link_to group.name, group_path(group) %></h3>
+    <% if !group.ban  %>
+        <p id="notice"><%= notice %></p>
+    <% end %>
+    <% if user_signed_in? %>
+        <% if group.user_create_id != current_user.id %>
+            <div class = "bottom">
+                <div class = "button">
+                    <button type="button" class="btn btn-default navbar-btn btn-join-group" data-user-id="<%= current_user.id %>" data-group-id="<%= group.id %>" id="btn-join">Tham gia nhóm</button>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+
+</div>
+
+<%= javascript_pack_tag 'group' %>

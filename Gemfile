@@ -82,4 +82,6 @@ gem 'kaminari'
 gem 'ransack'     
 gem 'bootstrap-kaminari-views' 
 
+gem 'jquery-rails'
+
 # gem 'mailcatcher'

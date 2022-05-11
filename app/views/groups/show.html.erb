@@ -1,11 +1,20 @@
 <%= render "shared/header" %>
 
-
 <% if user_signed_in? %>
-  <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
+    <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
 <% end %>
 
 <%= render "shared/listPost" %>
+
+<% if @group.user_create_id == current_user.id %>
+  <% @group.group_members.each do |member| %>
+    <% if member.user_id != @group.user_create_id %>
+        <h3> <%= member.user.name %></h3>
+        <button type="button" class="btn btn-default navbar-btn btn-join-group" >Đồng ý</button>
+        <button type="button" class="btn btn-default navbar-btn btn-join-group" >Hủy</button>
+    <% end %>
+  <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

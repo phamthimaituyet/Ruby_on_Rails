@@ -2,29 +2,29 @@
     <div class="container-fluid">
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li role="presentation"><%= link_to "Home", '/', :method => :get %></li>
-          <li role="presentation"><%= link_to "Post", posts_path %></li>
-          <li role="presentation"><%= link_to "Group", groups_path %></li>
-          <li role="presentation"><%= link_to "Profile", users_path %></li>
-        </ul>
-        <%= form_tag(posts_path, method: :get, class: 'navbar-form navbar-left' )do %>
-          <%= text_field_tag :term , params[:term], class: 'form-control' %>
-          <%= submit_tag 'Search', class: 'btn btn-default' %>
-        <% end %>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li role="presentation"><%= link_to "Home", '/', :method => :get %></li>
+                <li role="presentation"><%= link_to "Post", posts_path %></li>
+                <li role="presentation"><%= link_to "Group", groups_path %></li>
+                <li role="presentation"><%= link_to "Profile", users_path %></li>
+            </ul>
+            <%= form_tag(posts_path, method: :get, class: 'navbar-form navbar-left' )do %>
+                <%= text_field_tag :term , params[:term], class: 'form-control' %>
+                <%= submit_tag 'Search', class: 'btn btn-default' %>
+            <% end %>
 
-        <div class = "thongtincanhan">
-          <% if user_signed_in? %>
-              <div class = "inf"><%= link_to current_user.email, users_path %></div>
-              <div class = "out_in_sign"><%= link_to "Log out", destroy_user_session_path, method: :delete %></div>
-            <% else %>
-              <div class = "out_in_sign"><%= link_to "Log in", new_user_session_path %></div>
-              <div class = "out_in_sign"><%= link_to "Sign up", new_user_registration_path %></div>
-          <% end %>
-        </div>
-      </div><!-- /.navbar-collapse -->
+            <div class = "thongtincanhan">
+                <% if user_signed_in? %>
+                    <div class = "inf"><%= link_to current_user.email, users_path %></div>
+                    <div class = "out_in_sign"><%= link_to "Log out", destroy_user_session_path, method: :delete %></div>
+                <% else %>
+                    <div class = "out_in_sign"><%= link_to "Log in", new_user_session_path %></div>
+                    <div class = "out_in_sign"><%= link_to "Sign up", new_user_registration_path %></div>
+                <% end %>
+            </div>
+        </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 
     
-  </nav>
+</nav>

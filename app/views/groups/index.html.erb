@@ -3,41 +3,12 @@
 <div style="overflow: auto">
     <h1 style="float:left;margin:3px 5px; color: #FF8728">Groups</h1>
     <% if user_signed_in? %>
-      <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Group', new_group_path %></button>
+        <button style="float:right" type="button" class="btn btn-default navbar-btn"><%= link_to 'New Group', new_group_path %></button>
     <% end %>
 </div>
 
 <br>
 
-<% @groups.each do |group| %>
-
-  <p id="notice"><%= flash[:danger] %></p>
-  <div class = "container">
-    <h3><%= link_to group.name, group_path(group) %></h3>
-    <% if !group.ban  %>
-      <p id="notice"><%= notice %></p>
-    <% end %>
-    <% if user_signed_in? %>
-      <% if group.user_create_id != current_user.id %>
-        <div class = "bottom">
-          <div class = "button">
-            <button type="button" class="btn btn-default navbar-btn" id="join_group">Tham gia nhóm</button>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
-  </div>
-
-<% end %>
+<%= render @groups %>
 
 <br>
-
-<script>
-  var change_button = document.getElementById("join_group");
-
-  change_button.onclick = function addText()
-  {
-    change_button.innerText= "Đã gửi yêu cầu tham gia";
-  }
-</script>

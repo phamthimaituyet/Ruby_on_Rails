@@ -2,64 +2,61 @@
 
 <p id="notice"><%= notice %></p>
 <div class = "container">
-  <div class = "post-author">
-    <div class = "avatar">
-      <% if @post.user.avatar.attached? %>
-        <%= image_tag @post.user.avatar %>
-      <% else %> 
-        <%= image_tag 'user.png' %>
-      <% end %>
+    <div class = "post-author">
+        <div class = "avatar">
+            <% if @post.user.avatar.attached? %>
+                <%= image_tag @post.user.avatar %>
+            <% else %> 
+                <%= image_tag 'user.png' %>
+            <% end %>
+        </div>
+        <%= link_to @post.user.email, users_path %>
     </div>
-    <%= link_to @post.user.email, users_path %>
-  </div>
 
-  <h3>
-    <%= @post.title %>
-  </h3>
+    <h3>
+        <%= @post.title %>
+    </h3>
 
-  <p>
-    <%= @post.content %>
-  </p>
+    <p>
+        <%= @post.content %>
+    </p>
 
-  <div class = "image">
-    <% if @post.image.attached? %>        <%# check xem co ảnh chưa rồi hien thị ảnh  %>
-      <%= image_tag @post.image %>
-    <% end %>
-  </div>
-  <br>
-  <br>
-  <% if user_signed_in? %>
-    <% if @post.user_id == current_user.id %>
-      <%= link_to 'Edit', edit_post_path(@post) %>
-      <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-  <% end %>
-
-  <%= link_to 'Back', posts_path %>
- 
-  
-
-  <%# in cmt %>
-  <h2 style = "color: #003C6B">Các bình luận</h2>
-  <%= render "comments/comment" %>
-
-    <%# tạo form comment %>
-  <h2 style = "color: #003C6B">Viết bình luận</h2>
-  <%= form_with(model: [ @post, @post.comments.build ], :remote => true)  do |form| %>
-    <div class="form-group">
-        <%= form.label :commenter %><br>
-        <%= form.text_field :commenter, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= form.label :content %>
-      <%= form.text_area :content, class: "form-control", rows: "10" %>
+    <div class = "image">
+        <% if @post.image.attached? %>        <%# check xem co ảnh chưa rồi hien thị ảnh  %>
+            <%= image_tag @post.image %>
+        <% end %>
     </div>
     <br>
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
+    <br>
+    <% if user_signed_in? %>
+        <% if @post.user_id == current_user.id %>
+            <%= link_to 'Edit', edit_post_path(@post) %>
+            <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+    <% end %>
 
+    <%= link_to 'Back', posts_path %>
+
+    <%# in cmt %>
+    <h2 style = "color: #003C6B">Các bình luận</h2>
+    <%= render "comments/comment" %>
+
+    <%# tạo form comment %>
+    <h2 style = "color: #003C6B">Viết bình luận</h2>
+    <%= form_with(model: [ @post, @post.comments.build ], :remote => true)  do |form| %>
+        <div class="form-group">
+            <%= form.label :commenter %><br>
+            <%= form.text_field :commenter, class: "form-control" %>
+        </div>
+        <div class="form-group">
+            <%= form.label :content %>
+            <%= form.text_area :content, class: "form-control", rows: "10" %>
+        </div>
+        <br>
+        <div class="actions">
+            <%= form.submit %>
+        </div>
+    <% end %>
 </div>
 
 
