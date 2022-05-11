@@ -10,7 +10,7 @@
   <% @group.group_members.each do |member| %>
     <% if member.user_id != @group.user_create_id %>
         <h3> <%= member.user.name %></h3>
-        <button type="button" class="btn btn-default navbar-btn btn-join-group" >Đồng ý</button>
+        <button type="button" class="btn btn-default navbar-btn btn-join-group"  data-status="<%= member.status %>" >Đồng ý</button>
         <button type="button" class="btn btn-default navbar-btn btn-join-group" >Hủy</button>
     <% end %>
   <% end %>
