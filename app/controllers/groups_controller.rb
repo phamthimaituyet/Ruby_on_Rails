@@ -4,7 +4,9 @@ class GroupsController < ApplicationController
 
     # GET /groups or /groups.json
     def index
-        @groups = Group.all   
+        @groups = Group.all 
+        
+        @member = GroupMember.where(user_id: current_user.id)
     end
 
     # GET /groups/1 or /groups/1.json
@@ -68,9 +70,16 @@ class GroupsController < ApplicationController
     end
 
     def join_group
-        # byebug
-        @member = GroupMember.find_or_initialize_by(user_id: params[:user_id], group_id: params[:group_id])
-        success = @member.save
+        # @member = GroupMember.find_or_initialize_by(user_id: params[:user_id], group_id: params[:group_id])
+
+        @member = GroupMember.where(user_id: params[:user_id], group_id: params[:group_id])
+
+        if @member.present?
+          success = @member.delete
+        else
+          @member = GroupMember.find_or_initialize_by(user_id: params[:user_id], group_id: params[:group_id])
+          success = @member.save
+        end
         
         respond_to do |format|
             format.json { render json: {success: success} }

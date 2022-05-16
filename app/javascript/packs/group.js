@@ -10,7 +10,11 @@ $(".btn-join-group").on('click', function() {
         },
         success: function(data) {
             if (data.success){
-                $(".btn-join-group").text("Đã gửi yêu cầu tham gia");
+                if(!$(this).hasClass('sended')){
+                    $(".btn-join-group").text("Đã gửi yêu cầu tham gia");
+                }else{
+                    $(".btn-join-group").text("Tham gia nhóm");
+                }
             } else {
                 console.log();
             }
