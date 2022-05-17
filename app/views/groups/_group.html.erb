@@ -5,16 +5,16 @@
     <% end %>
     <% if user_signed_in? %>
         <% if group.user_create_id != current_user.id %>
-            <% if !@member.present? %>
-                <div class = "bottom">
+            <% if @member.present? %>
+                <div class = "buttom">
                     <div class = "button">
-                        <button type="button" class="btn btn-default navbar-btn btn-join-group" data-user-id="<%= current_user.id %>" data-group-id="<%= group.id %>" id="btn-join">Tham gia nhóm</button>
+                        <button type="button" class="btn btn-default navbar-btn btn-join-group sended" data-user-id="<%= current_user.id %>" data-group-id="<%= group.id %>" id="btn-join">Đã gửi yêu cầu tham gia</button>
                     </div>
                 </div>
             <% else %>
-                 <div class = "bottom">
+                <div class = "buttom">
                     <div class = "button">
-                        <button type="button" class="btn btn-default navbar-btn btn-join-group sended" data-user-id="<%= current_user.id %>" data-group-id="<%= group.id %>" id="btn-join">Đã gửi yêu cầu tham gia</button>
+                        <button type="button" class="btn btn-default navbar-btn btn-join-group" data-user-id="<%= current_user.id %>" data-group-id="<%= group.id %>" id="btn-join">Tham gia nhóm</button>
                     </div>
                 </div>
             <% end %>

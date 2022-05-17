@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
                 format.html { redirect_to groups_path, notice: "Group đã bị ban" }
             end
         end
+        @member = GroupMember.where(user_id: current_user.id)
     end
 
     # GET /groups/new
@@ -72,15 +73,23 @@ class GroupsController < ApplicationController
     def join_group
         # @member = GroupMember.find_or_initialize_by(user_id: params[:user_id], group_id: params[:group_id])
 
-        @member = GroupMember.where(user_id: params[:user_id], group_id: params[:group_id])
+        @member = GroupMember.find_by(user_id: params[:user_id], group_id: params[:group_id])
 
         if @member.present?
-          success = @member.delete
+            success = @member.destroy
         else
-          @member = GroupMember.find_or_initialize_by(user_id: params[:user_id], group_id: params[:group_id])
-          success = @member.save
+            @member = GroupMember.find_or_initialize_by(user_id: params[:user_id], group_id: params[:group_id])
+            success = @member.save
         end
         
+        respond_to do |format|
+            format.json { render json: {success: success} }
+        end
+    end
+
+    def accept_join_group
+
+        success = @member.update(group_member_params)
         respond_to do |format|
             format.json { render json: {success: success} }
         end
@@ -90,6 +99,7 @@ class GroupsController < ApplicationController
         # Use callbacks to share common setup or constraints between actions.
     def set_group
         @group = Group.find(params[:id])
+        @member = GroupMember.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

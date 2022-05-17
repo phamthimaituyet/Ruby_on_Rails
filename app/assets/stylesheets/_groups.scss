@@ -9,3 +9,46 @@
         }
     }
 }
+
+/* Tab Links */
+.tabs{
+    display:flex;
+    .tablinks {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        width: 100%;
+        padding: 1rem;
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight:600;
+        transition: 0.2s ease;
+      }
+    .tablinks:hover{
+        background:rgb(48, 134, 233);
+        color:#fff;
+      }
+    /* Tab active */
+    .tablinks.active {
+        background:rgb(48, 134, 233);
+        color:#fff;
+      }
+}
+/* tab content */
+.wrapper_tabcontent{
+    .tabcontent {
+        display: none;
+        /* Text*/
+        p{
+            color: #333;
+            font-size: 16px;
+        }
+    }
+    /* tab content active */
+    .tabcontent.active {
+    display: block;
+    }
+
+}
+
+  
