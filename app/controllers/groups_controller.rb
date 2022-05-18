@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
     def index
         @groups = Group.all 
         
-        @member = GroupMember.where(user_id: current_user.id)
+        @members = GroupMember.where(user_id: current_user.id)
     end
 
     # GET /groups/1 or /groups/1.json
@@ -19,7 +19,18 @@ class GroupsController < ApplicationController
                 format.html { redirect_to groups_path, notice: "Group đã bị ban" }
             end
         end
-        @member = GroupMember.where(user_id: current_user.id)
+        @members = GroupMember.where(user_id: current_user.id)
+
+        if @group.status == 'private'
+            if @members.present?
+                @posts = Post.where(group_id:@group.id)
+                @posts = @posts.page(params[:page]).per(3)
+            else
+                respond_to do |format|
+                    format.html { redirect_to groups_path, notice: "Group đã bị ban" }
+                end
+            end
+        end
     end
 
     # GET /groups/new
@@ -89,6 +100,7 @@ class GroupsController < ApplicationController
 
     def accept_join_group
 
+        @member = GroupMember.find_by(user_id: params[:user_id], group_id: params[:group_id])
         success = @member.update(group_member_params)
         respond_to do |format|
             format.json { render json: {success: success} }
@@ -99,7 +111,6 @@ class GroupsController < ApplicationController
         # Use callbacks to share common setup or constraints between actions.
     def set_group
         @group = Group.find(params[:id])
-        @member = GroupMember.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
