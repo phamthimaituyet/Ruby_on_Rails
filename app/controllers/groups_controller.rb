@@ -19,7 +19,8 @@ class GroupsController < ApplicationController
                 format.html { redirect_to groups_path, notice: "Group đã bị ban" }
             end
         end
-        @members = GroupMember.where(user_id: current_user.id)
+
+        @members = GroupMember.where(user_id: current_user.id, group_id: @group.id)
 
         if @group.status == 'private'
             if @members.present?
@@ -27,7 +28,7 @@ class GroupsController < ApplicationController
                 @posts = @posts.page(params[:page]).per(3)
             else
                 respond_to do |format|
-                    format.html { redirect_to groups_path, notice: "Group đã bị ban" }
+                    format.html { redirect_to groups_path, notice: "Ban chua join group" }
                 end
             end
         end

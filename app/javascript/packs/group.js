@@ -3,6 +3,8 @@ $(".btn-join-group").on('click', function() {
     var user_id = $(this).data("user-id");
     var group_id = $(this).data("group-id");
 
+    var join_group = $(this)
+
     $.ajax({
         type: "POST",
         url: `/groups/${group_id}/join_group`,
@@ -11,13 +13,13 @@ $(".btn-join-group").on('click', function() {
         },
         success: function(data) {
             if (data.success){
-                if($(".btn-join-group").hasClass('sended')){
-                    $(".btn-join-group").text("Tham gia nhóm");
+                if(join_group.hasClass('sended')){
+                    join_group.text("Tham gia nhóm");
                 }else{
-                    $(".btn-join-group").text("Đã gửi yêu cầu tham gia");
+                    join_group.text("Đã gửi yêu cầu tham gia");
                 }
                 
-                $(".btn-join-group").toggleClass("sended");
+                join_group.toggleClass("sended");
             } else {
                 console.log();
             }
@@ -57,6 +59,8 @@ $(".btn-accept-join-group").on('click', function(){
     var status = $(this).data("status");
     var user_id = $(this).data("user-id");
     var group_id = $(this).data("group-id");
+    var accept_join_group = $(this)
+
     $.ajax({
         type: "POST",
         url: `/groups/${group_id}/accept_join_group`,
@@ -66,6 +70,7 @@ $(".btn-accept-join-group").on('click', function(){
         },
         success: function(data){
             if (data.success){
+                accept_join_group.parent().css("display","none");
                 alert("Da accept thanh cong!");
             }
         }
@@ -77,6 +82,8 @@ $(".btn-reject-join-group").on('click', function(){
     var status = $(this).data("status");
     var user_id = $(this).data("user-id");
     var group_id = $(this).data("group-id");
+    var reject_join_group = $(this)
+
     $.ajax({
         type: "POST",
         url: `/groups/${group_id}/accept_join_group`,
@@ -86,6 +93,7 @@ $(".btn-reject-join-group").on('click', function(){
         },
         success: function(data){
             if (data.success){
+                reject_join_group.parent().css("display","none");
                 alert("Da reject thanh cong!");
             }
         }
