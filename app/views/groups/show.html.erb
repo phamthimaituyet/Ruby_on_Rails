@@ -9,34 +9,56 @@
  <!-- Tab content -->
 <div class="wrapper_tabcontent">
     <div id="allPosts" class="tabcontent active">
+      <% if user_signed_in? %>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
+      <% end %>
       <%= render "shared/listPost" %>
     </div>
 
-    <div id="newPost" class="tabcontent">
-      <% if user_signed_in? %>
-        <%= link_to 'New Post', "#{@group.id}/posts/new" %>
-      <% end %>
-    </div>
-
-
     <div id="members" class="tabcontent">
-      <% if @group.user_create_id == current_user.id %>
-        <% @group.group_members.each do |member| %>
-            <% if member.user_id != @group.user_create_id && !member.status %>
-              <div class="member">
-                <h3> <%= member.user.name %></h3>
-                <button type="button" class="btn btn-default navbar-btn btn-accept-join-group"  data-status="true" data-user-id="<%= member.user_id %>" data-group-id="<%= member.group_id %>" >Accept</button>
-                <button type="button" class="btn btn-default navbar-btn btn-reject-join-group" data-status="false" data-user-id="<%= member.user_id %>" data-group-id="<%= member.group_id %>" >Reject</button>
-              </div>
-            <% end %>
-        <% end %>
-        <% else %>
-          <% @group.group_members.each do |member| %>
-            <% if member.status %>
-              <h3> <%= member.user.name %></h3>
-            <% end %>
+      <div class="list_members">
+          <input type="radio" name="list_member" checked="checked" id="list_member1" /><label id="label1" for="list_member1">List_Member</label>
+          <div class="tab">
+               <% @group.group_members.each do |member| %>
+                  <% if member.status %>
+                    <div class="member">
+                      <div class = "avatar">
+                        <% if member.user.avatar.attached? %>
+                            <%= image_tag member.user.avatar %>
+                        <% else %> 
+                            <%= image_tag 'user.png' %>
+                        <% end %>
+                      </div>
+                      <h3> <%= link_to member.user.name, users_path %></h3>
+                    </div>
+                  <% end %>
+              <% end %>
+          </div>
+          <% if @group.user_create_id == current_user.id %>
+            <input type="radio" name="list_member" id="list_member2" /><label id="label2" for="list_member2">Accept_Member</label>
+            <div class="tab">
+                <% @group.group_members.each do |member| %>
+                  <% if member.user_id != @group.user_create_id && !member.status %>
+                    <div class="member">
+                      <div class = "avatar">
+                          <% if member.user.avatar.attached? %>
+                              <%= image_tag member.user.avatar %>
+                          <% else %> 
+                              <%= image_tag 'user.png' %>
+                          <% end %>
+                      </div>
+                      <h3> <%= member.user.name %></h3>
+                      <div class="button_accpect">
+                        <button type="button" class="btn btn-default navbar-btn btn-accept-join-group"  data-status="true" data-user-id="<%= member.user_id %>" data-group-id="<%= member.group_id %>" >Accept</button>
+                        <button type="button" class="btn btn-default navbar-btn btn-reject-join-group" data-status="false" data-user-id="<%= member.user_id %>" data-group-id="<%= member.group_id %>" >Reject</button>
+                      </div>
+                      
+                    </div>
+                  <% end %>
+                <% end %>
+            </div>
           <% end %>
-      <% end %>
+      </div>
     </div>
 </div>
 
