@@ -13,6 +13,10 @@ class PostsController < ApplicationController
         end
         @posts = Post.search(params[:term])
         @posts = @posts.page(params[:page]).per(2)
+
+        @posts.each do |post|
+            @post = Post.find(post.id)
+        end
     end
 
     # GET /posts/1 or /posts/1.json

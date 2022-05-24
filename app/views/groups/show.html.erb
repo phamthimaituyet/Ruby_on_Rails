@@ -12,7 +12,8 @@
       <% if user_signed_in? %>
         <button type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
       <% end %>
-      <%= render "shared/listPost" %>
+
+      <%= render "shared/listPost", in_group: true %>
     </div>
 
     <div id="members" class="tabcontent">
