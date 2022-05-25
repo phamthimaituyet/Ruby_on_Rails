@@ -12,10 +12,12 @@ class PostsController < ApplicationController
             Post.all
         end
         @posts = Post.search(params[:term])
+        
         @posts = @posts.page(params[:page]).per(2)
 
         @posts.each do |post|
             @post = Post.find(post.id)
+            
         end
     end
 
@@ -66,7 +68,7 @@ class PostsController < ApplicationController
     def update
         respond_to do |format|
             if @post.update(post_params)
-                format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+                format.html { redirect_to edit_post_path, notice: "Post was successfully updated." }
                 format.json { render :show, status: :ok, location: @post }
             else
                 format.html { render :edit, status: :unprocessable_entity }

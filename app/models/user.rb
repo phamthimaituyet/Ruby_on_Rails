@@ -9,6 +9,7 @@ class User < ApplicationRecord
     has_many :likes ,foreign_key: 'user_id'
     has_many :group_members
 
+
     private
     def ban
         if !status

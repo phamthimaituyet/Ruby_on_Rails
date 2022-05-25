@@ -5,7 +5,6 @@ class LikesController < ApplicationController
         if @like.save
             respond_to do |format|
                 format.html { redirect_to posts_url}
-                format.js { render '/posts/like.js.erb' }
             end
         else
             flash[:danger] = 'Already liked'
@@ -18,7 +17,6 @@ class LikesController < ApplicationController
         @like.destroy
         respond_to do |format|
             format.html { redirect_to posts_url}
-            format.js { render '/posts/like.js.erb' }
         end
     end
 

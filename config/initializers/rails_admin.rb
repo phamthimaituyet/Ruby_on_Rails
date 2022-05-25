@@ -73,6 +73,19 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'User' do
+    edit do
+      field :email
+      field :password
+      field :name
+      field :role
+      field :birth
+      field :status
+      field :posts
+      field :avatar
+    end
+  end
+
   config.model 'Post' do
     edit do
       field :admin_update do
@@ -85,6 +98,46 @@ RailsAdmin.config do |config|
       field :approve
     end
   end
+
+  config.model 'Comment' do
+    list do 
+      field :commenter
+      field :content
+      field :created_at
+      field :post
+      field :parent_id
+      field :replies
+    end
+  end
+
+  config.model 'Comment' do
+    edit do
+      field :commenter
+      field :content
+    end
+  end
+
+  config.model 'Group' do
+    list do 
+      field :name 
+      field :user_create_id
+      field :ban
+      field :status 
+      field :posts
+    end
+  end
+
+  config.model 'Group' do
+    edit do 
+      field :user 
+      field :group
+      field :ban
+      field :status 
+      field :posts
+    end
+  end
+
+  
   config.default_items_per_page = 5
 
 end

@@ -3,13 +3,21 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .container{
-    h3{
-        a{
-            color: red;
+    .groups{
+        display: flex;
+
+        h3{
+            width: 50%;
+            a{
+                color: red;
+            }
+        }
+        .buttom{
+            margin-top: 10px;
         }
     }
+   
 }
-
 /* Tab Links */
 .tabs{
     display:flex;
@@ -111,7 +119,7 @@
                         img{
                             border-radius: 50%;
                             width: 100%;
-                            height: auto;
+                            height: 100%;
                         }
                     }
                     h3{

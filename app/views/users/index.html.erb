@@ -16,7 +16,6 @@
             <h3><%= @user.name %></h3>
             <h3><%= @user.birth %></h3>
             <button type="button" class="btn btn-default navbar-btn"> <%= link_to 'Edit', edit_user_path(@user) %></button>
-            <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %></button>
         </div>
     <% end %>
     <div class = "user_post">

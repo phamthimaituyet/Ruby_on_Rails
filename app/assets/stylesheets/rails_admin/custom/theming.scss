@@ -2,3 +2,12 @@
 #post_admin_update_field{
     display: none;
 }
+
+#comment_commenter_field{
+    .col-sm-10.controls{
+        input:read-only{
+            background-color: #ccc;
+        }
+    } 
+    
+}

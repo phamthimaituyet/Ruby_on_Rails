@@ -57,7 +57,6 @@
         display: flex;
         margin: 10px;
         padding: 10px;
-        margin-left: 10%;
 
         .like-post{
             width: 79%;
@@ -80,7 +79,7 @@
             img{
                 border-radius: 50%;
                 width: 100%;
-                height: auto;
+                height: 100%;
             }
         }
 
@@ -104,7 +103,7 @@
         img{
             border-radius: 50%;
             width: 100%;
-            height: auto;
+            height: 100%;
         }
     }
 

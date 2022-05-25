@@ -17,7 +17,10 @@
                                 <%= image_tag 'user.png' %>
                             <% end %>
                         </div>
-                        <%= link_to post.user.email, users_path %>
+                        <div class="inf">
+                            <%= link_to post.user.email, users_path %>
+                            <i style="font-size: 14px;">Posted: <%= time_ago_in_words(post.created_at) %> ago</i>
+                        </div>
                     </div>
                     <h3><%= link_to post.title, post %></h3>
                     <p><%= post.content %></p>
