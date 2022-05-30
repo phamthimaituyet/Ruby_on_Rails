@@ -129,8 +129,8 @@ RailsAdmin.config do |config|
 
   config.model 'Group' do
     edit do 
-      field :user 
-      field :group
+      field :user_create_id
+      field :name
       field :ban
       field :status 
       field :posts

@@ -1,7 +1,4 @@
 <% @posts.each do |post| %>
-    <% if post.group_id.present? && post.group.status == "private" && !in_group %>
-        <% next %>
-    <% end %>
     <% if post.approve %>
         <p id="notice"><%= flash[:danger] %></p>
         <div class = "main">

@@ -13,7 +13,7 @@
         <button type="button" class="btn btn-default navbar-btn"><%= link_to 'New Post', "#{@group.id}/posts/new" %></button>
       <% end %>
 
-      <%= render "shared/listPost", in_group: true %>
+      <%= render "shared/listPost" %>
     </div>
 
     <div id="members" class="tabcontent">

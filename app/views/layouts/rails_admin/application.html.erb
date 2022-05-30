@@ -2,6 +2,8 @@
 <html lang="<%= I18n.locale %>">
     <head>
         <%= render "layouts/rails_admin/head" %>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <%= javascript_pack_tag 'admin' %>
     </head>
     <body class="rails_admin">
         <div data-i18n-options="<%= I18n.t("admin.js").to_json %>" id="admin-js"></div>
@@ -22,3 +24,5 @@
         </div>
     </body>
 </html>
+
+

@@ -5,20 +5,17 @@ class PostsController < ApplicationController
 
     # GET /posts or /posts.json
     def index
-        @posts  = params[:term]
-        if params[:term]
-            Post.where('title LIKE ?', "%#{params[:term]}%")   #regular expression
-        else
-            Post.all
-        end
-        @posts = Post.search(params[:term])
-        
-        @posts = @posts.page(params[:page]).per(2)
+        @term = params[:term]
 
-        @posts.each do |post|
-            @post = Post.find(post.id)
-            
+        if @term
+            @posts = Post.left_joins(:group).where('title LIKE ?', "%#{@term}%")   #regular expression
+        else
+            @posts = Post.left_joins(:group).where('groups.status=? OR posts.group_id IS ?','public', nil)
         end
+
+        @posts = @posts.search(@term)
+
+        @posts = @posts.page(params[:page]).per(2)
     end
 
     # GET /posts/1 or /posts/1.json
