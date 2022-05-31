@@ -45,3 +45,12 @@
 .odd.link.active_storage_attachment_links, .active_storage_blob_links, .active_storage_variant_record_links{
         display: none;
 }
+
+#post_user_id_field, #user_email_field{
+    .form-control-static{
+        margin-top: 5px;
+    }
+    .form-text{
+        display: none;
+    }
+}

@@ -10,7 +10,7 @@ class PostsController < ApplicationController
         if @term
             @posts = Post.left_joins(:group).where('title LIKE ?', "%#{@term}%")   #regular expression
         else
-            @posts = Post.left_joins(:group).where('groups.status=? OR posts.group_id IS ?','public', nil)
+            @posts = Post.left_joins(:group).where('groups.status=? OR posts.group_id IS ? AND posts.approve= ?','public', nil, true)
         end
 
         @posts = @posts.search(@term)

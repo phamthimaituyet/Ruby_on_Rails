@@ -75,8 +75,11 @@ RailsAdmin.config do |config|
 
   config.model 'User' do
     edit do
-      field :email
-      field :password
+      field :email do
+        read_only do
+          bindings[:object].email.present?
+        end
+      end
       field :name
       field :role
       field :birth
@@ -87,7 +90,25 @@ RailsAdmin.config do |config|
   end
 
   config.model 'Post' do
+    list do
+      field :user
+      field :title
+      field :content
+      field :group
+      field :created_at
+      field :updated_at
+      field :approve
+      field :image
+    end
+  end
+
+  config.model 'Post' do
     edit do
+      field :user do
+        read_only do
+          bindings[:object].user.present?
+        end
+      end
       field :admin_update do
         formatted_value do 
           true
@@ -96,6 +117,25 @@ RailsAdmin.config do |config|
       field :title
       field :content
       field :approve
+    end
+  end
+
+  config.model 'Like' do
+    list do
+      field :user
+      field :post
+      field :created_at
+      field :updated_at
+    end
+  end
+
+  config.model 'GroupMember' do
+    list do
+      field :user
+      field :group
+      field :created_at
+      field :updated_at
+      field :status
     end
   end
 

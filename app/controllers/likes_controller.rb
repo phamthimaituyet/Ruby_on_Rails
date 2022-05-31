@@ -1,14 +1,14 @@
 class LikesController < ApplicationController
-
+    include UrlHelper
     def create
         @like = current_user.likes.new(like_params)
         if @like.save
             respond_to do |format|
-                format.html { redirect_to posts_url}
+                format.html { redirect_to :back}
             end
         else
             flash[:danger] = 'Already liked'
-            redirect_to posts_url
+            redirect_to :back
         end
     end
 
@@ -16,7 +16,7 @@ class LikesController < ApplicationController
         @like = current_user.likes.find(params[:id])
         @like.destroy
         respond_to do |format|
-            format.html { redirect_to posts_url}
+            format.html { redirect_to :back}
         end
     end
 

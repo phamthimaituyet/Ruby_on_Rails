@@ -11,9 +11,9 @@
         </div>
         <% end %>
         <p id="notice"><%= flash[:success] %></p>
-        <div class="form-group">
+        <div class="form-group" >
             <%= form.label :email %>
-            <%= form.text_field :email, class: "form-control" %>
+            <%= form.text_field :email, class: "form-control", id: "readOnly" %>
         </div>
 
         <div class="form-group">
